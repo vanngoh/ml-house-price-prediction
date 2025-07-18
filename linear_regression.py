@@ -8,7 +8,7 @@ from sklearn.datasets import fetch_california_housing
 data = fetch_california_housing(as_frame=True)
 df = data.frame
 
-x = df[['HouseAge', 'AveBedrms']]
+x = df.drop(columns=['MedHouseVal'])
 y = df['MedHouseVal']
 
 # Split the data into training and testing sets

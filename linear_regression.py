@@ -27,15 +27,20 @@ r2 = r2_score(y_test, y_pred)
 print(f"Mean Squared Error: {mse}")
 print(f"R2 Score: {r2}")
 
-# Plot the results
-plt.scatter(y_test, y_pred, color='blue')
-plt.xlabel('Actual')
-plt.ylabel('Predicted')
-plt.title('Actual vs Predicted')
-plt.show()
+# Plot the results and feature importance side by side
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
-# plt.scatter(x_test['AveBedrms'], y_test, color='blue', label='Actual')
-# plt.scatter(x_test['AveBedrms'], y_pred, color='red', label='Predicted')
-# plt.legend()
-# plt.xlabel('AveBedrms')
-# plt.ylabel('MedHouseVal')
+# Actual vs Predicted scatter plot
+axes[0].scatter(y_test, y_pred, color='blue')
+axes[0].set_xlabel('Actual')
+axes[0].set_ylabel('Predicted')
+axes[0].set_title('Actual vs Predicted')
+
+# Feature importance bar plot
+feature_importance = model.coef_
+axes[1].barh(x.columns, feature_importance)
+axes[1].set_xlabel('Feature Importance')
+axes[1].set_ylabel('Features')
+axes[1].set_title('Feature Importance')
+
+plt.show()

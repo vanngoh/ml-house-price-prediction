@@ -31,7 +31,7 @@ print(f"R2 Score: {r2}")
 fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
 # Actual vs Predicted scatter plot
-axes[0].scatter(y_test, y_pred, color='blue')
+axes[0].scatter(y_test, y_pred)
 axes[0].set_xlabel('Actual')
 axes[0].set_ylabel('Predicted')
 axes[0].set_title('Actual vs Predicted')

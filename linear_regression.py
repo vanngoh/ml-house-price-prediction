@@ -8,7 +8,15 @@ from sklearn.datasets import fetch_california_housing
 data = fetch_california_housing(as_frame=True)
 df = data.frame
 
-x = df.drop(columns=['MedHouseVal'])
+# x = df.drop(columns=['MedHouseVal'])
+'''
+Longitude (~-0.45): Strong negative impact. In California (your dataset), moving east (increasing longitude) generally means moving away from the coast, which reduces property values significantly.
+Latitude (~-0.42): Strong negative impact. Moving north (increasing latitude) in California tends to correlate with lower prices, possibly reflecting the premium of southern California locations.
+AveRooms (~0.10): Average rooms per household shows a modest positive effect. More total rooms generally indicates larger, more valuable properties.
+MedInc (~0.40): Median income has a significant positive impact. Areas with higher median incomes tend to have more expensive housing, reflecting purchasing power and neighborhood desirability.
+AveBedrms (~0.85): The strongest positive predictor. More bedrooms per household correlates strongly with higher house values. This makes intuitive sense as larger homes with more bedrooms typically cost more.
+'''
+x = df[['Longitude', 'Latitude', 'AveRooms', 'MedInc', 'AveBedrms']]
 y = df['MedHouseVal']
 
 # Split the data into training and testing sets
